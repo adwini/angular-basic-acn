@@ -1,0 +1,16 @@
+<div *ngIf="error" class="mt-4 text-red-500">{{ error }}</div>
+<div *ngIf="!user && !error" class="mt-4">Loading...</div>
+<div *ngIf="user" class="flex items-center justify-center min-h-screen">
+  <div class="w-full max-w-lg bg-white shadow-2xl card dark:bg-gray-800">
+    <div class="card-body">
+      <h2 class="card-title">User Details</h2>
+      <ul class="space-y-2 list-disc list-inside">
+        <li><strong>ID:</strong> {{ user.id }}</li>
+        <li><strong>Name:</strong> {{ user.name }}</li>
+        <li><strong>Email:</strong> {{ user.email }}</li>
+        <li><strong>Contact:</strong> {{ user.contact }}</li>
+      </ul>
+      <button (click)="goBack()" class="mb-4 btn btn-primary">Back</button>
+    </div>
+  </div>
+</div>

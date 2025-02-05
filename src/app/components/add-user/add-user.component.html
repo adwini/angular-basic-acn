@@ -1,0 +1,68 @@
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmit()"
+  class="p-4 rounded-lg shadow-lg bg-base-200"
+>
+  <div class="mb-4 form-control">
+    <label for="name" class="label">
+      <span class="label-text">Name</span>
+    </label>
+    <input
+      id="name"
+      formControlName="name"
+      placeholder="Your name"
+      class="w-1/2 input input-bordered"
+    />
+    <div
+      *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched"
+      class="mt-1 text-error"
+    >
+      Name is required
+    </div>
+  </div>
+
+  <div class="mb-4 form-control">
+    <label for="email" class="label">
+      <span class="label-text">Email</span>
+    </label>
+    <input
+      id="email"
+      formControlName="email"
+      placeholder="example@yourmail.com"
+      class="w-1/2 input input-bordered"
+    />
+    <div
+      *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+      class="mt-1 text-error"
+    >
+      Valid email is required
+    </div>
+  </div>
+
+  <div class="mb-4 form-control">
+    <label for="contact" class="label">
+      <span class="label-text">Contact</span>
+    </label>
+    <input
+      id="contact"
+      formControlName="contact"
+      placeholder="1234567890"
+      class="w-1/2 input input-bordered"
+    />
+    <div *ngIf="userForm.get('contact')?.touched" class="mt-1 text-error">
+      <span *ngIf="userForm.get('contact')?.errors?.['required']"
+        >Contact is required</span
+      >
+      <span
+        *ngIf="userForm.get('contact')?.errors?.['invalidNumber'] && userForm.get('contact')?.value"
+        >Contact must be a valid number</span
+      >
+    </div>
+  </div>
+
+  <button type="submit" class="w-1/4 mb-10 btn btn-primary">
+    {{ isEditing ? "Update" : "Add" }} User
+  </button>
+</form>
+
+<div class="mt-4"></div>

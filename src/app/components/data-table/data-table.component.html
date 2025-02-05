@@ -1,0 +1,55 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <p *ngIf="error" class="mt-4 text-red-500">{{ error }}</p>
+  <app-add-user
+    [selectedUser]="selectedUser"
+    (userUpdated)="handleUserUpdated()"
+  ></app-add-user>
+  <app-empty-list *ngIf="users.length === 0"></app-empty-list>
+  <table
+    *ngIf="users.length > 0"
+    class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">Name</th>
+        <th scope="col" class="px-6 py-3">Email</th>
+        <th scope="col" class="px-6 py-3">Contact</th>
+        <th scope="col" class="px-6 py-3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of users"
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+      >
+        <td class="px-6 py-4">{{ user.id }}</td>
+        <td class="px-6 py-4">{{ user.name }}</td>
+        <td class="px-6 py-4">{{ user.email }}</td>
+        <td class="px-6 py-4">{{ user.contact }}</td>
+        <td class="px-6 py-4">
+          <button
+            (click)="handleEditClick(user)"
+            class="text-blue-600 hover:underline"
+          >
+            Edit
+          </button>
+          <button
+            (click)="handleDeleteClick(user.id)"
+            class="ml-2 text-red-600 hover:underline"
+          >
+            Delete
+          </button>
+          <button
+            (click)="handleViewClick(user.id)"
+            class="ml-2 text-green-600 hover:underline"
+          >
+            View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
