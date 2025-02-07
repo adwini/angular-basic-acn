@@ -46,7 +46,7 @@
     <input
       id="contact"
       formControlName="contact"
-      placeholder="1234567890"
+      placeholder="0912-345-6867"
       class="w-1/2 input input-bordered"
     />
     <div *ngIf="userForm.get('contact')?.touched" class="mt-1 text-error">
@@ -54,7 +54,7 @@
         >Contact is required</span
       >
       <span
-        *ngIf="userForm.get('contact')?.errors?.['invalidNumber'] && userForm.get('contact')?.value"
+        *ngIf="userForm.get('contact')?.errors?.['pattern'] && userForm.get('contact')?.value"
         >Contact must be a valid number</span
       >
     </div>
